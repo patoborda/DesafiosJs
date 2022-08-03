@@ -92,14 +92,17 @@ while (continuar == 1 ) {
         }
     }
 
+    let total= valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4
+
+
 //Muestro en pantalla los precios con iva, sin iva y con descuento si el cupon es valido, es decir igual a "1234"
     if (cupon!==1234){
-        alert ("No ha utilizado un codigo de descuento. =( \nEl valor total sin iva es de: " + (valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4) + "$" + "\nEl valor total con iva es de: " + calculariva(valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4) + "$")  
+        alert ("No ha utilizado un codigo de descuento. =( \nEl valor total sin iva es de: " + (total) + "$" + "\nEl valor total con iva es de: " + calculariva(total) + "$")  
     }
     else {
-        let totalDescuento = (calculariva(valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4))*valorDescuento
+        let totalDescuento = (calculariva(total))*valorDescuento
 
-        alert ("Ha utilizado un codigo de descuento!\nEl valor total sin iva es de: " + (valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4) + "$" + "\nEl valor total con iva es de: " + calculariva(valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4) + "$" + "\nEl total con descuento es de: " + resta(calculariva(valorTotalP1 + valorTotalP2 + valorTotalP3 + valorTotalP4),totalDescuento) + "$")
+        alert ("Ha utilizado un codigo de descuento!\nEl valor total sin iva es de: " + (total) + "$" + "\nEl valor total con iva es de: " + calculariva(total) + "$" + "\nEl total con descuento es de: " + resta(calculariva(total),totalDescuento) + "$")
     }
     
 
