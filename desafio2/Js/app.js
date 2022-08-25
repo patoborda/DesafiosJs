@@ -70,29 +70,9 @@ function sumaIva(precio) {
             <li>El total con IVA es de: ${sumaIva(precioProducto)}</li>`;
         }
     
-
-    const mostrarVentaMayor = () => {
-    //Filtro y busco los productos que tienen una cantidad igual o mayor a 10unidades para luego hacer un descuento por venta por mayor.
-    let ventaMayor = carrito.filter(producto => producto.cantidad >= 10);
-        if(ventaMayor.length>0){
-            let ventaporMayor = document.createElement("h3");
-            ventaporMayor.innerHTML = "Venta por mayor de los siguientes productos";
-            document.body.append(ventaporMayor);
-
-            for (const producto of ventaMayor) {
-            let items = document.createElement("ul");
-            items.innerHTML = 
-            `<li>Producto: ${producto.nombre}</li>
-            <li>Cantidad: ${producto.cantidad}</li>
-            <li>Total de descuento por mayor: ${producto.descuentoMayor()*producto.cantidad}</li>`
-            document.body.appendChild(items);
-            productoDescuento+=producto.descuentoMayor()*producto.cantidad
-            }
-        }
-    }
+        
     const mostrarCarrito = (e) => {
-        mostrarProducto1.remove();
-        mostrarVentaMayor()
+        productoDescuento=0; 
         e.preventDefault();
         mostrarCarrito1.innerHTML = "<h3>Carrito</h3>";
        for (const producto of carrito) {
@@ -101,16 +81,26 @@ function sumaIva(precio) {
             <p>Precio: ${producto.precio}</p>
             <p>Cantidad: ${producto.cantidad}</p>`;
        }
+       //Filtro y busco los productos que tienen una cantidad igual o mayor a 10unidades para luego hacer un descuento por venta por mayor.
+       let ventaMayor = carrito.filter(producto => producto.cantidad >= 10);
+       if(ventaMayor.length>0){  
+         mostrarCarrito1.innerHTML += "<h3>Venta por mayor de los siguientes productos</h3>";
+           for (const producto of ventaMayor) {
+           mostrarCarrito1.innerHTML += 
+           `<p>Producto: ${producto.nombre}</p>
+           <p>Cantidad: ${producto.cantidad}</p>
+           <p>Total de descuento por mayor: ${producto.descuentoMayor()*producto.cantidad}</p>`
+           productoDescuento+=producto.descuentoMayor()*producto.cantidad
+           }
+       }
         //Creo un array con solo los precios de los productos del array de carrito para luego aplicar el metodo reduce para sumar todos los precios.
         const precioCarrito = carrito.map(elemto => elemto.sumaIva()*elemto.cantidad);
         //Aplico reduce para sumar el total del carrito
         let precioTotal = precioCarrito.reduce((a,b)=>a+b);
         //Al total del carrito le quito el descuento que le hice a los productos que superaron o igualaron las 10 unidades, quedandome el precio total y final de venta.
         precioTotal-=productoDescuento;
-        let precioCarritop = document.createElement("h4");
-        precioCarritop.innerHTML = 
-        `El total de carrito es de: ${precioTotal}`;
-        document.body.append(precioCarritop);
+        mostrarCarrito1.innerHTML += 
+        `<h4>El total de carrito es de: ${precioTotal}</h4>`;
             }
     console.log(carrito)
     
