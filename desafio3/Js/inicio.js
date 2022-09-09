@@ -50,7 +50,8 @@ formulario.addEventListener("submit", (e) => {
             button: "Continuar",
             timer: "3000",
         }) (window.location.href = "compra.html") : resultado.innerHTML = `<p> Usuario o contraseña incorrecto </p>`
-        if (userLogin != "" && passLogin != "") resultado.innerHTML = `<p> Completa todos los campos </p>`;
+        } 
+    })
 //PRUEBA 1 **********************************************************************************************
         // for (let usuario of usuarios) {
         //     if (usuario.user == userLogin && usuario.pass == passLogin) {
@@ -68,7 +69,7 @@ formulario.addEventListener("submit", (e) => {
         //     }
         // }
     
-        }  
+         
         
 //PRUEBA 2 **********************************************************************************************
     // cambiarPagina= false;
@@ -95,7 +96,7 @@ formulario.addEventListener("submit", (e) => {
 
     // if (cambiarPagina == true) window.location.href = "compra.html";
 
-})
+
 
 
 registro.addEventListener("click", (e) => {
@@ -114,7 +115,8 @@ registro.addEventListener("click", (e) => {
                 text: "El nombre de usuario que usted ha ingresado ya esta en uso, si usted es el dueño de la cuenta inicie sesion!",
                 icon: "error",
                 button: "Continuar",
-              });
+            })
+
         }else if( userLogin != "" && passLogin != "") {
             let nuevoUsuario = new Usuario (userLogin, passLogin);
             usuarios.push(nuevoUsuario);
@@ -126,6 +128,7 @@ registro.addEventListener("click", (e) => {
                 button: "Continuar",
                 timer: "3000",
               }); 
+              break;
         }else {
             resultado.innerHTML = `<p> Completa todos los campos </p>`
         }
