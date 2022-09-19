@@ -1,3 +1,4 @@
+    
 //Constructor para luego cargar productos.
 class Producto {
     constructor(nombre, precio, cantidad) {
@@ -69,40 +70,31 @@ function agregarProd(e) {
     e.preventDefault()
     validarDatos();
     if (bandera == true) {
-    
-        
-    //const confirmarProducto = () => {
-        // swal ({
-        //     title: "Agregar producto",
-        //     text: "desea agregar producto a carrito?",
-        //     icon: "info",
-        //     showDenyButton: true,
-        // })
-        //}
-//Aca quiero agregar el sweet alert para el confirm, probe arriba en la funcion confirmarProducto con el swal pero no se bien como traerme el valor de esa alerta.
-//Habia puesto asi ` if(confirmarProducto() == true) pero nada.
-
-        if (confirm("Desea agregar producto a carrito?") == true) {
-            let datos = e.target
-            carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-            carrito.push(new Producto(nombreProducto, precioProducto, cantidadProducto));
-            const productosAlmacenados = JSON.stringify(carrito);
-            localStorage.setItem("carrito", productosAlmacenados);
-            datos.children[1].value = "";
-            datos.children[3].value = "";
-            datos.children[5].value = "";
-            mostrarCarrito1.innerHTML = "";
-            mostrarProd()
-        } else {
-            //alert("No se agrego producto a carrito")
-            //******************************************* Uso libreria SweetAlert
-            swal({
-                title: "No se agrego producto",
-                timer: "3000",
-                icon: "warning",
-                button: "Continuar",
-              });
-        }
+        swal ({
+            text: "Desea agregar producto a carrito?",
+            icon: "info"
+        }).then(res => {
+            if(res){ 
+                let datos = e.target
+                carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                carrito.push(new Producto(nombreProducto, precioProducto, cantidadProducto));
+                const productosAlmacenados = JSON.stringify(carrito);
+                localStorage.setItem("carrito", productosAlmacenados);
+                datos.children[1].value = "";
+                datos.children[3].value = "";
+                datos.children[5].value = "";
+                mostrarCarrito1.innerHTML = "";
+                mostrarProd();
+            }})  
+    }else {
+        //alert("No se agrego producto a carrito")
+        //******************************************* Uso libreria SweetAlert
+        swal({
+            title: "No se agrego producto",
+            timer: "3000",
+            icon: "warning",
+            button: "Continuar",
+          });
     }
 }
 
@@ -122,7 +114,7 @@ const filtroMayor = () => {
 }
 
 const mostrarCarrito = (e) => {
-    //aplique un OR ya que si en el localstorage no tengo un valor, este me va a dar indefinido por lo cual el OR me a elegir el array [] *************************************************************************************************************
+    //aplique un OR ya que si en el localstorage no tengo un valor, este me va a dar indefinido por lo cual el OR me a elegir el array [] ********************************************************************
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     productoDescuento = 0;
     e.preventDefault();
