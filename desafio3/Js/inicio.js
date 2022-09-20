@@ -23,6 +23,11 @@ let usuario2 = new Usuario("LUCIO", "321");
 let usuario3 = new Usuario("LEANDRO", "111");
 usuarios.push(usuario1, usuario2, usuario3);
 
+// let usuariosAlmacenados = JSON.stringify(usuarios);
+// localStorage.setItem("usuarios", usuariosAlmacenados);
+
+
+
 
 console.log(usuarios)
 
@@ -32,6 +37,7 @@ formulario.addEventListener("submit", (e) => {
     let userLogin = document.getElementById("user").value;
     let passLogin = document.getElementById("pass").value;
 
+    usuarios = JSON.parse(localStorage.getItem("usuarios"));
     const permiso = (userLogin == "") ? true : false
     permiso ? console.log("No puso usuario") : console.log("Si puso usuario")
                 
@@ -42,7 +48,6 @@ formulario.addEventListener("submit", (e) => {
                 text: "Te has logeado con éxito!",
                 icon: "success",
                 button: "Continuar",
-                timer: "3000",
             }).then(res => {if(res)(window.location.href = "compra.html")}) : resultado.innerHTML = `<p> Usuario o contraseña incorrecto </p>`            
     })
 //************************************************************** Evento de registro de usuario **************************************************************
@@ -50,6 +55,8 @@ registro.addEventListener("click", (e) => {
     e.preventDefault();
     let userLogin = document.getElementById("user").value;
     let passLogin = document.getElementById("pass").value;
+
+    usuarios = JSON.parse(localStorage.getItem("usuarios"));
 
     const permiso = (userLogin == "") ? true : false
     permiso ? console.log("No puso usuario") : console.log("Si puso usuario")
@@ -66,6 +73,9 @@ registro.addEventListener("click", (e) => {
         }else if( userLogin != "" && passLogin != "") {
             let nuevoUsuario = new Usuario (userLogin, passLogin);
             usuarios.push(nuevoUsuario);
+            console.log(usuarios)
+            let usuariosAlmacenados = JSON.stringify(usuarios);
+            localStorage.setItem("usuarios", usuariosAlmacenados);
             // alert("Te has registrado con exito!"); **************************************
             swal({
                 title: "Bien hecho!",
@@ -73,7 +83,7 @@ registro.addEventListener("click", (e) => {
                 icon: "success",
                 button: "Continuar",
                 timer: "3000",
-              }).then(res => {
+              }).then(res => {  
                 console.log(res)
                 if(res)(window.location.href = "compra.html");
               })
