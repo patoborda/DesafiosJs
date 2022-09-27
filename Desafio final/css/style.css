@@ -1,0 +1,70 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box; 
+   font-family: sans-serif;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.formulario {
+    border: 2px solid rgb(157, 157, 157);
+    border-radius: 2px;
+}
+.formulario-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}   
+.formulario-form label,input{
+    margin: 4px;
+}
+.formulario-form button {
+    margin: 3px;
+}
+.error-login {
+    color: red;
+}
+
+.api-container {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    margin: 50px 10px;
+    padding: 20px;
+    background-color: lightblue;
+    border-radius: 3px;
+    border: 1px solid;
+}
+.api-datos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.api-datos div {
+    width: 100%;
+    margin: 2px;
+}
+.api-titulo {
+    text-align: center;
+    background-color:rgb(243, 196, 55);
+}
+
+.body-compra {
+    display: flex;
+    flex-direction: column;
+}
+.form-compra {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 20%;
+}
+.carrito {
+    margin: auto;
+}
